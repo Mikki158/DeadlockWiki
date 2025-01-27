@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Список героев -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="vertical"
+        android:visibility="visible" />
+
+    <!-- Панель с информацией о выбранном герое (изначально скрыта) -->
+    <FrameLayout
+        android:id="@+id/hero_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Кнопка в правом верхнем углу -->
+        <Button
+            android:id="@+id/top_right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/round_ability_gray"
+            android:padding="8dp"
+            android:text="Назад"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_right_button"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <!-- Имя героя -->
+            <TextView
+                android:id="@+id/hero_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/aldrich"
+                android:paddingBottom="16dp"
+                android:text="Имя героя"
+                android:textColor="#000"
+                android:textSize="24sp" />
+
+            <!-- Изображение героя -->
+            <ImageView
+                android:id="@+id/hero_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_background_black" />
+
+            <!-- Рамка для способностей -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_background_invisible"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="Способности"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Изображения способностей -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ability_1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/round_ability"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/ability_2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/round_ability"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/ability_3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/round_ability"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/ability_4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/round_ability"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Описание героя -->
+            <TextView
+                android:id="@+id/hero_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/aldrich"
+                android:paddingBottom="8dp"
+                android:text="Описание героя"
+                android:textColor="#000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Добавляем предыдущую секцию разметки -->
+    <LinearLayout
+        android:id="@+id/abilities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_ability_gray"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/title_ability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_title"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp">
+
+                <!-- Верхняя часть: иконка и название -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ability_icon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ability_placeholder" />
+
+                    <TextView
+                        android:id="@+id/ability_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:paddingStart="10dp"
+                        android:text="Siphon Life"
+                        android:textColor="#FEEED6"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <!-- Время перезарядки и длительность -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <!-- Дистанция -->
+                    <LinearLayout
+                        android:id="@+id/distance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/distance" />
+
+                        <TextView
+                            android:id="@+id/distance_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <!-- Радиус действия -->
+                    <LinearLayout
+                        android:id="@+id/range"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/range" />
+
+                        <TextView
+                            android:id="@+id/range_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <!-- Продолжительность -->
+                    <LinearLayout
+                        android:id="@+id/duration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/duration" />
+
+                        <TextView
+                            android:id="@+id/duration_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <!-- Кол-во зарядов -->
+                    <LinearLayout
+                        android:id="@+id/chargeres"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/charges" />
+
+                        <TextView
+                            android:id="@+id/chargeres_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <!-- Время заряда 1 заряда -->
+                    <LinearLayout
+                        android:id="@+id/chargeres_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/charging_time" />
+
+                        <TextView
+                            android:id="@+id/chargeres_time_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <!-- Перезарядка -->
+                    <LinearLayout
+                        android:id="@+id/cooldown"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="#000000"
+                            android:src="@drawable/cooldown" />
+
+                        <TextView
+                            android:id="@+id/cooldown_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:textColor="#FEEED6"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Описание способности -->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aldrich"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="16dp"
+                android:text="Drain health from enemies in front of you while they are in the radius."
+                android:textColor="#FEEED6"
+                android:textSize="16dp" />
+
+            <!-- Основные характеристики -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:id="@+id/characteristic_1"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#2A2A2A"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/characteristic_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="35"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/characteristic_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="Damage Per Second"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/characteristic_2"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#2A2A2A"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/characteristic_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="100%"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/characteristic_2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="Heal vs Heroes"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/characteristic_3"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="#2A2A2A"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/characteristic_3_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="50%"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/characteristic_3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aldrich"
+                        android:text="Heal vs Non-Heroes"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Улучшения -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/round_upgrade_top"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="#000000"
+                            android:src="@drawable/upgrade" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:paddingStart="8dp"
+                            android:text="1"
+                            android:textColor="#C394F5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/upgrade_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:background="@drawable/round_upgrade_bottom"
+                        android:fontFamily="@font/aldrich"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/round_upgrade_top"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="#000000"
+                            android:src="@drawable/upgrade" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:paddingStart="8dp"
+                            android:text="2"
+                            android:textColor="#C394F5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/upgrade_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:background="@drawable/round_upgrade_bottom"
+                        android:fontFamily="@font/aldrich"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/round_upgrade_top"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="#000000"
+                            android:src="@drawable/upgrade" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aldrich"
+                            android:paddingStart="8dp"
+                            android:text="5"
+                            android:textColor="#C394F5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/upgrade_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:background="@drawable/round_upgrade_bottom"
+                        android:fontFamily="@font/aldrich"
+                        android:textAlignment="center"
+                        android:textColor="#FEEED6"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ability_gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_ability_gray"
+            android:padding="8dp"
+            android:text="Назад"
+            android:textColor="#FEEED6" />
+    </LinearLayout>
+
+</RelativeLayout>

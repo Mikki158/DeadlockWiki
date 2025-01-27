@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_about">
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.navigationmenu.ui.news.NewsListFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.navigationmenu.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_heroes"
+        android:name="com.example.navigationmenu.ui.heroes.HeroListFragment"
+        android:label="@string/menu_heroes"
+        tools:layout="@layout/fragment_heroes">
+        <action
+            android:id="@+id/action_heroListFragment_to_heroDetailFragment"
+            app:destination="@+id/Hero_detail_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_winrate"
+        android:name="com.example.navigationmenu.ui.winrate.WinrateFragment"
+        android:label="@string/menu_winrate"
+        tools:layout="@layout/fragment_winrate" />
+
+    <fragment
+        android:id="@+id/nav_developers"
+        android:name="com.example.navigationmenu.ui.developers.DevelopersFragment"
+        android:label="@string/menu_developers"
+        tools:layout="@layout/fragment_developers" />
+
+    <fragment
+        android:id="@+id/Hero_detail_fragment"
+        android:name="com.example.navigationmenu.ui.heroes.HeroDetailFragment"
+        android:label="@string/hero_details"
+        tools:layout="@layout/fragment_hero_detail" />
+</navigation>

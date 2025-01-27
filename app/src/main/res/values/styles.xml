@@ -1,0 +1,7 @@
+<resources>
+    <!-- Тема для светлой строки состояния -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Устанавливаем чёрные иконки в status bar -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

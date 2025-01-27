@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- RecyclerView для списка героев -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:scrollbars="vertical"/>
+
+    <!-- FrameLayout для панели, которая будет появляться поверх всего -->
+    <FrameLayout
+        android:id="@+id/hero_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <!-- Внутри можно добавить TextView для отображения имени героя, его описание и картинку -->
+        <!-- Это просто пример того, как можно наполнить этот FrameLayout -->
+        <TextView
+            android:id="@+id/hero_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Hero Name"
+            android:textSize="20sp" />
+
+        <!-- Также можно сюда добавить ImageView для фото героя и описание -->
+
+    </FrameLayout>
+
+    </FrameLayout>

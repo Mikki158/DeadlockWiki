@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+    <!-- Таблица -->
+    <TableLayout
+        android:id="@+id/statsTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1, 2, 3, 4, 5" >
+
+        <!-- Заголовки колонок -->
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Имя"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/cell_border"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Винрейт"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:background="@drawable/cell_border"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Пикрейт"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:background="@drawable/cell_border"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="KDA"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:background="@drawable/cell_border"/>
+        </TableRow>
+
+        <!-- Пример строки данных -->
+
+
+    </TableLayout>
+
+</LinearLayout>

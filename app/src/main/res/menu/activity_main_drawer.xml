@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group
+        android:id="@+id/group0">
+        <item
+            android:id="@+id/zaglushka2"/>
+    </group>
+
+    <group
+        android:id="@+id/group1">
+        <item
+            android:id="@+id/nav_news"
+            android:title="@string/menu_news" />
+    </group>
+
+    <group
+        android:id="@+id/group2">
+        <item
+            android:id="@+id/nav_about"
+            android:title="@string/menu_about" />
+    </group>
+
+    <group
+        android:id="@+id/group3">
+        <item
+            android:id="@+id/nav_heroes"
+            android:title="@string/menu_heroes" />
+    </group>
+
+    <group
+        android:id="@+id/group4">
+        <item
+            android:id="@+id/nav_winrate"
+            android:title="@string/menu_winrate" />
+    </group>
+
+    <group
+        android:id="@+id/group5">
+        <item
+            android:id="@+id/nav_developers"
+            android:title="@string/menu_developers" />
+    </group>
+
+    <group
+        android:id="@+id/group6">
+        <item
+            android:id="@+id/zaglushka"/>
+    </group>
+
+</menu>
